@@ -1,6 +1,10 @@
 name: My Test Workflow
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: '1 * * * *'
 
 jobs:
   test:
