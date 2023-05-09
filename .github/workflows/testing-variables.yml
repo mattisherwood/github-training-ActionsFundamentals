@@ -13,7 +13,7 @@ jobs:
         id: set-time
       
       - name: Output time
-        run: echo 'It was ${{ steps.set-time.outputs.my_time }} in the previous step."
+        run: echo "It was ${{ steps.set-time.outputs.my_time }} in the previous step."
       
       - name: Writing to the workflow log
         run: |
