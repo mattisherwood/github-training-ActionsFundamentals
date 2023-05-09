@@ -6,5 +6,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Console log
       - run: echo "Hello world"
