@@ -1,0 +1,29 @@
+name: Testing Variables
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  old_way:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set time
+        run: echo '::set-output name=my_time::$(date)'
+#         run: echo "{name}={value}" >> "$GITHUB_OUTPUT"
+        id: set-time
+      
+      - name: Output time
+        run: echo 'It was ${{ steps.set-time.outputs.my_time }} in the previous step."
+      
+      - name: Writing to the workflow log
+        run: |
+          echo "Writing to the workflow log"
+          echo "::group: Writing to the log"
+          echo "::notice file=starter.yml, line=169,col19,endColumn=22::Writing a notice"
+          echo "::warning file=starter.yml, line=171,col19,endColumn=22::Writing a warning"
+          
+#     new_way:
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Set time
+#           run: echo "{name}={value}" >> "$GITHUB_OUTPUT"
