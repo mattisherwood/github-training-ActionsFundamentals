@@ -17,4 +17,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This is working"
+      - run: echo "This part is working"
+      
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Trigger Event ASDF"
+      - run: echo "Branch ASDF"
+      - run: echo "Files in Repository ASDF"
