@@ -1,17 +1,15 @@
 name: Deploy
 on: [workflow_dispatch]
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Demo Step
-      run: "Pretend we've built something..."
-
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Demo Step
+#       run: "Pretend we've built something..."
   notify:
     runs-on: ubuntu-latest
-    if: always()
-    needs: build
+#     if: always()
+#     needs: build
     steps:
     - name: Send a Notification
       id: notify
