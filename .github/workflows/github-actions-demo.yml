@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo Event Trigger: ${{ github.event_name }}"
+          echo "Event Trigger: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref }}"
           echo "Respoitory: ${{ github.repository }}."
 
