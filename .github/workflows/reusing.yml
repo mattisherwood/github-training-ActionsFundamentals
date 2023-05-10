@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Write time to console
-        run: echo "The workflow was run at ${{ steps.call-workflow.outputs.current-time }}"
+        run: echo "The workflow was run at ${{ needs.call-workflow.outputs.current-time }}"
