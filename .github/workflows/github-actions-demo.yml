@@ -35,14 +35,14 @@ jobs:
 
   Test:
     runs-on: ubuntu-latest
-    if: github.event_name == "workflow_dispatch"
+    if: github.event_name == 'workflow_dispatch'
     environment: Test
     steps:
       - run: echo "Testing..."
       
   Load-Test:
     runs-on: ubuntu-latest
-    if: github.event_name == "workflow_dispatch"
+    if: github.event_name == 'workflow_dispatch'
     environment: Load-Test
     steps:
       - run: |
@@ -52,7 +52,7 @@ jobs:
   Production:
     needs: [Test, Load-Test]
     runs-on: ubuntu-latest
-    if: github.event.inputs.environment == "Production"
+    if: github.event.inputs.environment == 'Production'
     environment:
       name: Production
       url: https://writeabout.net
