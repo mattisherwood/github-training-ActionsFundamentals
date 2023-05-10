@@ -11,25 +11,20 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to deploy to'
+        description: "Environment to deploy to"
         type: environment
         required: true
   
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This part is working on ${{ github.event.inputs.environment }}"
-
   Build:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
-    needs: test
+    environment: github.event.inputs.environment
     steps:
       - run: |
           echo "Event Trigger: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref }}"
           echo "Respoitory: ${{ github.repository }}."
+          echo "Environment: ${{ github.events.inputs.environment }}"
 
       - uses: actions/checkout@v3.3.0
 
@@ -37,3 +32,45 @@ jobs:
         run: |
           echo "The repository ${{ github.repository }} contains the following files:"
           tree
+
+  Test:
+    runs-on: ubuntu-latest
+    if: github.event_name == "workflow_dispatch"
+    environment: Test
+    steps:
+      - run: echo "Testing..."
+      
+  Load-Test:
+    runs-on: ubuntu-latest
+    if: github.event_name == "workflow_dispatch"
+    environment: Load-Test
+    steps:
+      - run: |
+          echo "Testing..."
+          sleep 15
+          
+  Production:
+    needs: [Test, Load-Test]
+    runs-on: ubuntu-latest
+    if: github.event.inputs.environment == "Production"
+    environment:
+      name: Production
+      url: https://writeabout.net
+    steps:
+      - run: |
+          echo "Step 1 deploying"
+          sleep 10
+      - run: |
+          echo "Step 2 deploying"
+          sleep 10
+      - run: |
+          echo "Step 3 deploying"
+          sleep 10
+      - run: |
+          echo "Step 4 deploying"
+          sleep 10
+      - run: |
+          echo "Step 5 deploying"
+          sleep 10
+      
+  
