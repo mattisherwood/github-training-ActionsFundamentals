@@ -9,15 +9,22 @@ on:
   schedule:
     - cron: '15 6 * * 0'
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: environment
+        required: true
   
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This part is working"
+      - run: echo "This part is working on ${{ github.workflow.environment }}"
 
   Build:
     runs-on: ubuntu-latest
+    environment: ${{ github.workflow.environment }}
+    needs: test
     steps:
       - run: |
           echo "Event Trigger: ${{ github.event_name }}"
