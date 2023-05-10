@@ -18,7 +18,7 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
-    environment: github.event.inputs.environment
+    environment: ${{ github.event.inputs.environment }}
     steps:
       - run: |
           echo "Event Trigger: ${{ github.event_name }}"
@@ -54,7 +54,7 @@ jobs:
   Production:
     needs: [Test, Load-Test]
     runs-on: ubuntu-latest
-    if: github.event.inputs.environment == 'Production'
+    if: ${{ github.event.inputs.environment }} == 'Production'
     environment:
       name: Production
       url: https://writeabout.net
