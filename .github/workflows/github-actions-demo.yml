@@ -54,7 +54,7 @@ jobs:
   Production:
     needs: [Test, Load-Test]
     runs-on: ubuntu-latest
-    if: ${{ inputs.environment }} == 'Production'
+    if: inputs.environment == 'Production'
     environment:
       name: Production
       url: https://writeabout.net
