@@ -1,0 +1,19 @@
+name: Matrix Job Example
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  matrix_job:
+    name: matrix-job
+    runs-on: ${{ matrix.runner }}
+    if: github.event.inputs.run_matrix
+    
+    strategy:
+      matrix:
+        runner: [ubuntu-18.04, ubuntu-20.04]
+        node: [10,12]
+        
+    steps:
+      - run: echo "${{ matrix.runner }}"
+      - run: echo "${{ matrix.node }}"
