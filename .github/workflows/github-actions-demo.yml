@@ -19,11 +19,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This part is working on ${{ github.workflow.environment }}"
+      - run: echo "This part is working on ${{ github.event.inputs.environment }}"
 
   Build:
     runs-on: ubuntu-latest
-    environment: ${{ github.workflow.environment }}
+    environment: ${{ github.event.inputs.environment }}
     needs: test
     steps:
       - run: |
